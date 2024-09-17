@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gæðahandbók</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+</head>
+
+<div id="veikindarettur-reiknivel" class="calculator">
+    <h2>Reiknivél fyrir veikindarétt</h2>
+    <form id="veikindaretturForm">
+        <div class="form-group">
+            <label>Markaður:</label>
+            <div class="radio-group">
+                <input type="radio" id="almennur" name="market" value="almennur" required>
+                <label for="almennur">Almennur</label>
+                <input type="radio" id="opinber" name="market" value="opinber" required>
+                <label for="opinber">Opinber</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="starfstimi">Starfstími:</label>
+            <div class="input-group">
+                <input type="number" id="starfstimi" name="starfstimi" required min="0">
+                <select id="starfstimiType" name="starfstimiType">
+                    <option value="mánuðir">Mánuðir</option>
+                    <option value="ár">Ár</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notadirDagar">Notaðir veikindadagar síðustu 12 mánuði:</label>
+            <input type="number" id="notadirDagar" name="notadirDagar" required min="0">
+        </div>
+        <button type="submit" class="calculate-btn">Reikna veikindarétt</button>
+    </form>
+    <div id="nidurstada" class="result"></div>
+    <script src="veikindarettur-reiknivel.js"></script>
+
+</div>

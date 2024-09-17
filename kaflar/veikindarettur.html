@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gæðahandbók</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <h1>Veikindaréttur</h1>
+    <h2>Greining á veikindarétti milli almennra og opinberra kjarasamninga</h2>
+    
+    <p>Veikindaréttur starfsfólks er ólíkur eftir því hvort það starfar á almennum vinnumarkaði eða hjá hinu opinbera. Hér er farið yfir veikindarétt samkvæmt almennum kjarasamningi SA og SGS og síðan gerður samanburður við veikindarétt opinberra starfsmanna.</p>
+    
+    <h3>Veikindaréttur samkvæmt almennum kjarasamningi (SA og SGS)<sup><a href="#" onclick="loadReferenceInParent('ref1'); return false;">[1]</a></sup></h3>
+    
+    <ul>
+        <li>Á fyrsta starfsári greiðast 2 dagar fyrir hvern unninn mánuð.</li>
+        <li>Eftir 1 ár: 1 mánuður með staðgengislaunum.</li>
+        <li>Eftir 2 ár: 1 mánuður með staðgengislaunum + 1 mánuður á dagvinnulaunum.</li>
+        <li>Eftir 3 ár: 1 mánuður með staðgengislaunum + 2 mánuðir á dagvinnulaunum.</li>
+        <li>Eftir 5 ár: 1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum.</li>
+    </ul>
+    
+    <h3>Veikindaréttur hjá sveitarfélögum<sup><a href="#" onclick="loadReferenceInParent('ref2'); return false;">[2]</a></sup></h3>
+    
+    <ul>
+        <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
+        <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
+        <li>Eftir 10 ár: 9 mánuðir með fullum launum.</li>
+        <li>Eftir 15 ár: 12 mánuðir með fullum launum.</li>
+    </ul>
+    
+    <h3>Veikindaréttur hjá ríkisstarfsmönnum<sup><a href="#" onclick="loadReferenceInParent('ref3'); return false;">[3]</a></sup></h3>
+    
+    <ul>
+        <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
+        <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
+        <li>Eftir 10 ár: 12 mánuðir með fullum launum.</li>
+    </ul>
+    
+    <h3>Samanburðartafla</h3>
+    <div class="table-container">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Þáttur</th>
+                    <th>Almennur markaður (SA og SGS)</th>
+                    <th>Sveitarfélög</th>
+                    <th>Ríkisstarfsmenn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Veikindaréttur fyrsta árið</td>
+                    <td>2 dagar fyrir hvern unninn mánuð</td>
+                    <td>3 mánuðir</td>
+                    <td>3 mánuðir</td>
+                </tr>
+                <tr>
+                    <td>Veikindaréttur eftir 5 ár</td>
+                    <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
+                    <td>6 mánuðir</td>
+                    <td>6 mánuðir</td>
+                </tr>
+                <tr>
+                    <td>Veikindaréttur eftir 10 ár</td>
+                    <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
+                    <td>9 mánuðir</td>
+                    <td>12 mánuðir</td>
+                </tr>
+                <tr>
+                    <td>Veikindaréttur eftir 15 ár</td>
+                    <td>-</td>
+                    <td>12 mánuðir</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Reiknivél fyrir veikindarétt</h3>
+    <iframe src="../apps/illness/illnesscalc.html" width="100%" height="550" frameborder="0"></iframe>
+
+
+
+    <script>
+    function loadReferenceInParent(refId) {
+        window.parent.postMessage({ type: 'loadReference', refId: refId }, '*');
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innheimtumál</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <h1>Innheimtumál</h1>
+
+    <div class="section">
+        <h3>Ferli Innheimtu<sup><a href="#" onclick="loadReferenceInParent('ref4'); return false;">[4]</a></sup></h3>
+        <p>Ferlið við innheimtu vegna vangreiddra launa eða annarra krafna sem byggja á kjarasamningum er mjög skipulegt og fylgir eftirfarandi skrefum.</p>
+    </div>
+
+    <div class="step">
+        <h2>Skref 1: Innheimta vegna vangreiddra launa eða annarra krafna</h2>
+        <p><strong>Aðgerð:</strong> Mál sem snúa að vangreiddum launum eða öðrum kröfum samkvæmt kjarasamningi eru tekin upp og lögð inn til innheimtu.</p>
+        <p><strong>Bestu aðferðir:</strong></p>
+        <ul>
+            <li>Skráning krafna félagsmanns og undirbúningur fyrir innheimtuaðgerðir.</li>
+            <li>Skoðun á réttarstöðu félagsmanns til að tryggja að krafan sé lögmæt.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>Skref 2: Mál innheimt með samningaviðræðum eða lögfræðiaðstoð</h2>
+        <p><strong>Aðgerð:</strong> Innheimtuaðgerðir fara fram í samningaviðræðum við vinnuveitanda eða með lögfræðiaðstoð ef nauðsyn krefur.</p>
+        <p><strong>Bestu aðferðir:</strong></p>
+        <ul>
+            <li>Leita sátta með vinnuveitanda í gegnum beinar viðræður eða fundi.</li>
+            <li>Ef samningar nást ekki, leita til lögfræðinga félagsins til að hefja formlegar innheimtuaðgerðir.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>Skref 3: Ef innheimta mistekst, farið með mál fyrir dómstóla</h2>
+        <p><strong>Aðgerð:</strong> Ef innheimta tekst ekki í gegnum samningaviðræður eða lögfræðiaðstoð, fer málið fyrir dómstóla til að leysa það formlega.</p>
+        <p><strong>Bestu aðferðir:</strong></p>
+        <ul>
+            <li>Vinna með lögfræðingum að undirbúningi málflutnings fyrir dómi.</li>
+            <li>Tryggja að öll nauðsynleg gögn og upplýsingar séu til staðar fyrir dómsmeðferð.</li>
+        </ul>
+    </div>
+    <script>
+        function loadReferenceInParent(refId) {
+            window.parent.postMessage({ type: 'loadReference', refId: refId }, '*');
+        }
+        </script>
+</body>
+</html>

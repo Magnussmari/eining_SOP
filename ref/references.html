@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilvísun</title>
+</head>
+<body>
+    <div id="reference-content"></div>
+
+    <script>
+        function loadReference() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const refId = urlParams.get('ref');
+            if (refId) {
+                fetch(`ref_data/${refId}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const content = `
+                            <p>
+                                ${data.number}. <a href="${data.link}" target="_blank">${data.title}</a> - 
+                                ${data.description}
+                                [<a href="${data.pdfLink}" target="_blank">${data.pdfText}</a>]
+                            </p>
+                        `;
+                        document.getElementById('reference-content').innerHTML = content;
+                    })
+                    .catch(error => console.error('Error loading reference:', error));
+            }
+        }
+        loadReference();
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Main container */
+.container {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    max-width: 1800px;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    grid-column: 1 / -1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.header img {
+    width: 100px; /* Adjust based on your logo size */
+    height: auto;
+    margin-right: 20px; /* Adds space between the logo and the title */
+}
+
+.header h1 {
+    color: #007bff;
+    margin: 0;
+    font-size: 28px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: #007bff;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #495057;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 8px 0;
+}
+
+.sidebar ul li a:hover {
+    color: #007bff;
+    background-color: #e9ecef;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+/* Main content area */
+.main-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.main-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* References frame */
+.references {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.references h2 {
+    color: #007bff;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+}
+.header h1 a {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Use the color of the h1 element */
+    font-family: inherit; /* Use the same font as the h1 element */
+}
+
+.header h1 a:hover {
+    color: inherit; /* Maintain the same color on hover */
+    cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+}
+/* Responsive design */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+    }
+    
+    .sidebar, .main-content, .references {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* Superscript reference links */
+sup a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* References list styling */
+.references ol {
+    padding-left: 20px;
+}
+
+.references li {
+    margin-bottom: 10px;
+}
+
+.references a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.references a:hover {
+    text-decoration: underline;
+}
+/* Comparison Table Styles */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.comparison-table th, .comparison-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.comparison-table thead {
+    background-color: #f8f9fa;
+}
+
+.comparison-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Calculator Styles */
+.calculator {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.calculator h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.calculate-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.calculate-btn:hover {
+    background-color: #0056b3;
+}
+.result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    font-weight: bold;
+}
+/* Table container to make it responsive */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Basic table styling */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+/* Table headers */
+.comparison-table thead th {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table rows */
+.comparison-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table cells */
+.comparison-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Alternate row colors */
+.comparison-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+.comparison-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+    .comparison-table thead {
+        display: none;
+    }
+    
+    .comparison-table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .comparison-table tbody td {
+        display: block;
+        text-align: right;
+        font-size: 14px;
+        padding-left: 50%;
+        position: relative;
+    }
+    
+    .comparison-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
