@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="login-container" class="login-container">
+        <h2>Innskráning</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="admin" required>
+            <input type="password" id="password" placeholder="admin" required>
+            <button type="submit">Skrá inn</button>
+        </form>
+    </div>
+
+    <div id="main-container" class="container" style="display: none;">
         <header class="header">
             <h1><a href="kaflar/intro.html" target="content-frame">Gæðahandbók</a></h1>
         </header>
     
-        
         <div class="sidebar">
             <h2>Efnisyfirlit</h2>
             <ul>
@@ -31,13 +39,13 @@
             <iframe name="content-frame" src="kaflar/intro.html" target="content-frame"></iframe>
         </div>
    
-        
         <aside class="references">
             <h2>Tilvísanir</h2>
             <div id="reference-content"></div>
         </aside>
     </div>
 
+    <script src="login.js"></script>
     <script>
         window.addEventListener('message', function(event) {
             if (event.data.type === 'loadReference') {
