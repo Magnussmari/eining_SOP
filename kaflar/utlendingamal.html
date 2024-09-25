@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umsókn um endurnýjun starfsleyfis fyrir útlendinga</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>   
+    <h1>Umsókn um endurnýjun starfsleyfis fyrir útlendinga<sup><a href="#" onclick="loadReferenceInParent('ref4');">[4]</a></sup></h1>
+
+    <button onclick="window.open('https://einingidja.sharepoint.com/:w:/s/Kjarasvi/Een2hVkQxNVPnprIz43xtLkBIJJ-06etw4VBzhK4Fu-fcg?e=C545sB', '_blank')" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">Vinnuskjal á SharePoint</button>
+    <style>
+        button:hover {
+            background-color: #0056b3 !important;
+        }
+    </style>
+
+<p style="color: red; font-weight: bold;">⚠️ Vinsamlegast athugið: Þetta eru drög í vinnslu og ekki endanleg skjöl.</p>
+
+    <div class="step">
+        <h2>1. Tilgangur</h2>
+        <p>Að tryggja rétt og skilvirkt ferli fyrir endurnýjun starfsleyfa útlendinga innan félagsins. Ferlið á að tryggja að allar umsóknir séu rétt unnar, fullnægjandi og að farið sé yfir ráðningarsamninga með það að markmiði að vernda réttindi umsækjenda.</p>
+    </div>
+
+    <div class="step">
+        <h2>2. Verksvið</h2>
+        <p>Þetta verklag nær til allra útlendinga sem starfa á Íslandi undir starfsleyfi og sækja um endurnýjun þess í gegnum Einingu - Iðju. Ákvæðin eiga ekki við um þá sem sækja um ný dvalarleyfi eða leyfi á grundvelli annarra forsendna en atvinnu.</p>
+    </div>
+
+    <div class="step">
+        <h2>3. Yfirferð og undirritun skjala</h2>
+        <h3>3.1 Koma á skrifstofu</h3>
+        <p>Umsækjandi verður að mæta á skrifstofu stéttarfélagsins til að fá skjöl undirrituð. Nauðsynlegt er að athuga skilríki, vegabréf eða annað gilt auðkenni til að staðfesta hver umsækjandi er.</p>
+
+        <h3>3.2 Umsókn afhent af þriðja aðila (umboð)</h3>
+        <p>Ef annar aðili mætir með skjöl til undirritunar fyrir hönd umsækjanda, þarf viðkomandi að framvísa giltu umboði frá umsækjanda.</p>
+        <ul>
+            <li>Umboðið skal vera skriflegt og undirritað af umsækjanda.</li>
+            <li>Umsækjandi getur einnig notað staðfest umboð með rafrænum skilríkjum.</li>
+            <li>Án fullgilds umboðs mun stéttarfélagið ekki framkvæma neinar undirritanir eða afgreiða málið.</li>
+        </ul>
+
+        <h3>3.3 Yfirferð á kjarasviði</h3>
+        <ul>
+            <li>Uppfletting í Total, skoða skilagreinar, rétta tengiliðaupplýsingar ef vantar og muna að skrá uppflettingu vegna endurnýjunar starfsleyfis</li>
+            <li>Yfirferð á ráðningasamningi sem þarf að fylgja með til Vinnumálastofnunar</li>
+            <li>Kvitta undir með penna "Samþykkt f.h. Einingar - Iðju [undirskrift]" Síðan þarf að stimpla.</li>
+        </ul>
+    </div>
+    <script>
+        function loadReferenceInParent(refId) {
+            window.parent.postMessage({ type: 'loadReference', refId: refId }, '*');
+        }
+
+        // Clear references when navigating away
+        window.addEventListener('beforeunload', function() {
+            window.parent.postMessage({ type: 'clearReference' }, '*');
+        });
+    </script>
+</body>
+</html>

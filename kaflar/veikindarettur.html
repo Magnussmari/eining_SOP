@@ -8,6 +8,14 @@
 </head>
 <body>
     <h1>Veikindaréttur</h1>
+    <button onclick="window.open('https://einingidja.sharepoint.com/:w:/s/Kjarasvi/ESm26yR-1MlGlCDpXyD5G_QBpiPH3kFQbHSCX4XyjPvesA?e=qoahcf', '_blank')" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">Vinnuskjal á SharePoint</button>
+    <style>
+        button:hover {
+            background-color: #0056b3 !important;
+        }
+    </style>
+    <p style="color: red; font-weight: bold;">⚠️ Vinsamlegast athugið: Þetta eru drög í vinnslu og ekki endanleg skjöl.</p>
+
     <h2>Greining á veikindarétti milli almennra og opinberra kjarasamninga</h2>
     
     <p>Veikindaréttur starfsfólks er ólíkur eftir því hvort það starfar á almennum vinnumarkaði eða hjá hinu opinbera. Hér er farið yfir veikindarétt samkvæmt almennum kjarasamningi SA og SGS og síðan gerður samanburður við veikindarétt opinberra starfsmanna.</p>
@@ -85,9 +93,14 @@
 
 
     <script>
-    function loadReferenceInParent(refId) {
-        window.parent.postMessage({ type: 'loadReference', refId: refId }, '*');
-    }
+        function loadReferenceInParent(refId) {
+            window.parent.postMessage({ type: 'loadReference', refId: refId }, '*');
+        }
+
+        // Clear references when navigating away
+        window.addEventListener('beforeunload', function() {
+            window.parent.postMessage({ type: 'clearReference' }, '*');
+        });
     </script>
 
 </body>

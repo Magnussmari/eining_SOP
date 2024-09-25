@@ -3,71 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gæðahandbók í vinnslu</title>
+    <title>Gæðahandbók - Innskráning</title>
     <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-    <div id="login-container" class="login-container">
-        <h2>Innskráning</h2>
-        <form id="login-form">
-            <input type="text" id="username" placeholder="admin" required>
-            <input type="password" id="password" placeholder="admin" required>
-            <button type="submit">Skrá inn</button>
-        </form>
-    </div>
-
-    <div id="main-container" class="container" style="display: none;">
-        <header class="header">
-            <h1><a href="kaflar/intro.html" target="content-frame">Gæðahandbók</a></h1>
-        </header>
-    
-        <div class="sidebar">
-            <h2>Efnisyfirlit</h2>
-            <ul>
-                <li><a href="kaflar/mottaka-kjaramala.html" target="content-frame">1. Móttaka kjaramála</a></li>
-                <li><a href="kaflar/urvinnsla-kjaramala.html" target="content-frame">2. Úrvinnsla kjaramála</a></li>
-                <li><a href="kaflar/trunadur-og-personuvernd.html" target="content-frame">3. Trúnaður og persónuvernd</a></li>
-                <li><a href="kaflar/innheimtumal.html" target="content-frame">4. Innheimtumál</a></li>
-                <li><a href="kaflar/kjarasamningar.html" target="content-frame">5. Kjarasamningar</a></li>
-                <li><a href="kaflar/vinnustadaeftirlit.html" target="content-frame">6. Vinnustaðaeftirlit</a></li>
-                <li><a href="kaflar/veikindarettur.html" target="content-frame">7. Veikindaréttur</a></li>
-                <li><a href="kaflar/rettarheimildir.html" target="content-frame">8. Helstu réttarheimildir</a></li>
-            </ul>
-        </div>
-        
-        <div class="main-content">
-            <iframe name="content-frame" src="kaflar/intro.html" target="content-frame"></iframe>
-        </div>
-   
-        <aside class="references">
-            <h2>Tilvísanir</h2>
-            <div id="reference-content"></div>
-        </aside>
-    </div>
-
-    <script src="login.js"></script>
     <script>
-        window.addEventListener('message', function(event) {
-            if (event.data.type === 'loadReference') {
-                loadReference(event.data.refId);
-            }
-        });
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-        function loadReference(refId) {
-            fetch(`ref_data/${refId}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    const content = `
-                        <p>
-                            ${data.number}. <a href="${data.link}" target="_blank">${data.title}</a> - 
-                            ${data.description}
-                            [<a href="${data.pdfLink}" target="_blank">${data.pdfText}</a>]
-                        </p>
-                    `;
-                    document.getElementById('reference-content').innerHTML = content;
-                })
-                .catch(error => console.error('Error loading reference:', error));
+            if (username === "Eining2024" && password === "Strandgata600!") {
+                saveLoginStatus(); // Save login status
+                window.location.href = "home.html"; // Navigate to home.html
+            } else {
+                alert("Rangt notandanafn eða lykilorð.");
+            }
+        }
+
+        // Check if user is logged in
+        window.onload = function() {
+            const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+            if (isLoggedIn === "true") {
+                window.location.href = "home.html"; // Redirect to home.html if already logged in
+            }
+        };
+
+        // Save login status
+        function saveLoginStatus() {
+            sessionStorage.setItem("isLoggedIn", "true");
         }
     </script>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Innskráning</h2>
+        <form onsubmit="login(event)">
+            <div class="form-group">
+                <label for="username">Notandanafn:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Lykilorð:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Innskrá</button>
+        </form>
+    </div>
 </body>
 </html>
