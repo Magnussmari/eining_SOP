@@ -1,4 +1,8 @@
 /* General styles */
+html {
+    font-size: clamp(14px, 1vw + 0.5rem, 16px);
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,13 +14,13 @@ body {
 /* Main container */
 .container {
     display: grid;
-    grid-template-columns: 280px 1fr 300px;
+    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr) minmax(250px, 300px);
     grid-template-rows: auto 1fr;
     height: 100vh;
     max-width: 1800px;
     margin: 0 auto;
-    gap: 20px;
-    padding: 20px;
+    gap: clamp(10px, 2vw, 20px);
+    padding: clamp(10px, 2vw, 20px);
     box-sizing: border-box;
 }
 
@@ -24,26 +28,27 @@ body {
 .header {
     grid-column: 1 / -1;
     background-color: #ffffff;
-    padding: 20px;
+    padding: clamp(10px, 2vw, 20px);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .header img {
-    width: 100px; /* Adjust based on your logo size */
+    width: clamp(80px, 8vw, 100px);
     height: auto;
-    margin-right: 20px; /* Adds space between the logo and the title */
+    margin-right: clamp(10px, 2vw, 20px);
 }
 
 .header h1 {
     color: #007bff;
     margin: 0;
-    font-size: 28px;
+    font-size: clamp(20px, 3vw, 28px);
 }
 
 /* Sidebar styles */
 .sidebar {
     background-color: #ffffff;
-    padding: 20px;
+    padding: clamp(10px, 2vw, 20px);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -51,8 +56,8 @@ body {
 
 .sidebar h2 {
     color: #007bff;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: clamp(10px, 2vw, 20px);
     padding-bottom: 10px;
     border-bottom: 2px solid #007bff;
 }
@@ -63,13 +68,13 @@ body {
 }
 
 .sidebar ul li {
-    margin-bottom: 10px;
+    margin-bottom: clamp(5px, 1vw, 10px);
 }
 
 .sidebar ul li a {
     color: #495057;
     text-decoration: none;
-    font-size: 16px;
+    font-size: clamp(14px, 1.5vw, 16px);
     transition: color 0.3s ease;
     display: block;
     padding: 8px 0;
@@ -88,6 +93,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    min-height: 0;
 }
 
 .main-content iframe {
@@ -99,7 +105,7 @@ body {
 /* References frame */
 .references {
     background-color: #ffffff;
-    padding: 20px;
+    padding: clamp(10px, 2vw, 20px);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
@@ -107,23 +113,36 @@ body {
 
 .references h2 {
     color: #007bff;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: clamp(10px, 2vw, 20px);
     padding-bottom: 10px;
     border-bottom: 2px solid #007bff;
 }
+
 .header h1 a {
-    text-decoration: none; /* Remove the underline */
-    color: inherit; /* Use the color of the h1 element */
-    font-family: inherit; /* Use the same font as the h1 element */
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
 }
 
 .header h1 a:hover {
-    color: inherit; /* Maintain the same color on hover */
-    cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+    color: inherit;
+    cursor: pointer;
 }
-/* Responsive design */
+
+/* Responsive design - Desktop first approach */
 @media (max-width: 1200px) {
+    .container {
+        grid-template-columns: minmax(250px, 280px) 1fr;
+    }
+    
+    .references {
+        grid-column: 1 / -1;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 992px) {
     .container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr auto;
@@ -132,6 +151,142 @@ body {
     .sidebar, .main-content, .references {
         grid-column: 1 / -1;
     }
+    
+    .sidebar {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -80vw;
+        top: 0;
+        height: 100%;
+        width: min(250px, 80vw);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        background-color: #ffffff;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        z-index: 1001;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .header h1 {
+        margin-left: 3.5rem;
+        font-size: clamp(18px, 5vw, 24px);
+    }
+}
+
+/* Table Styles with improved responsiveness */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: clamp(10px, 2vw, 20px) 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: clamp(12px, 1.5vw, 14px);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: clamp(8px, 1.5vw, 12px);
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background-color: #007bff;
+    color: white;
+    white-space: nowrap;
+}
+
+/* Calculator Styles with improved responsiveness */
+.calculator {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: clamp(15px, 3vw, 20px);
+    max-width: min(500px, 90%);
+    margin: 2rem auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: clamp(6px, 1vw, 8px);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.calculate-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2vw, 20px);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: clamp(14px, 1.5vw, 16px);
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.calculate-btn:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 1rem;
+    padding: clamp(10px, 2vw, 15px);
+    background-color: #e9ecef;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
 /* Custom scrollbar */
@@ -151,235 +306,49 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-/* Superscript reference links */
-sup a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
+
+/* Overlay for mobile menu */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
-/* References list styling */
-.references ol {
-    padding-left: 20px;
-}
-
-.references li {
-    margin-bottom: 10px;
-}
-
-.references a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.references a:hover {
-    text-decoration: underline;
-}
-/* Comparison Table Styles */
-.table-container {
-    overflow-x: auto;
-    margin-bottom: 2rem;
-}
-
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-
-.comparison-table th, .comparison-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-
-.comparison-table thead {
-    background-color: #f8f9fa;
-}
-
-.comparison-table th {
-    background-color: #007bff;
-    color: white;
-}
-
-.comparison-table tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-/* Calculator Styles */
-.calculator {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 2rem auto;
-}
-
-.calculator h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: #007bff;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
+.overlay.active {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
 }
 
-.radio-group {
-    display: flex;
-    gap: 1rem;
+/* Utility classes for better mobile experience */
+.hide-on-mobile {
+    display: none;
 }
 
-.input-group {
-    display: flex;
-    gap: 0.5rem;
+@media (min-width: 769px) {
+    .hide-on-mobile {
+        display: block;
+    }
 }
 
-input[type="number"], select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.calculate-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.calculate-btn:hover {
-    background-color: #0056b3;
-}
-.result {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: #e9ecef;
-    border-radius: 4px;
-    font-weight: bold;
-}
-/* Table container to make it responsive */
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-/* Basic table styling */
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-}
-
-/* Table headers */
-.comparison-table thead th {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px;
-    text-align: left;
-    font-size: 16px;
-    border-bottom: 2px solid #ddd;
-}
-
-/* Table rows */
-.comparison-table tbody tr {
-    border-bottom: 1px solid #ddd;
-}
-
-/* Table cells */
-.comparison-table td {
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 14px;
-}
-
-/* Alternate row colors */
-.comparison-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Hover effect for rows */
-.comparison-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Mobile adjustments */
-@media screen and (max-width: 600px) {
-    .comparison-table thead {
+/* Print styles */
+@media print {
+    .sidebar,
+    .references,
+    .menu-toggle {
         display: none;
     }
-    
-    .comparison-table tbody tr {
+
+    .container {
         display: block;
-        margin-bottom: 10px;
-    }
-    
-    .comparison-table tbody td {
-        display: block;
-        text-align: right;
-        font-size: 14px;
-        padding-left: 50%;
-        position: relative;
-    }
-    
-    .comparison-table tbody td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 45%;
-        padding-left: 15px;
-        font-weight: bold;
-        text-align: left;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
+        height: auto;
+        padding: 0;
     }
 
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        left: 1rem;
-        top: 1rem;
-    }
-
-    .sidebar {
-        position: fixed;
-        left: -250px;
-        top: 0;
-        height: 100%;
-        width: 250px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .main-content, .references {
-        width: 100%;
-    }
-
-    .header h1 {
-        margin-left: 3rem;
+    .main-content {
+        box-shadow: none;
     }
 }

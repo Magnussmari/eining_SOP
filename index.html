@@ -25,6 +25,9 @@
             const isLoggedIn = sessionStorage.getItem("isLoggedIn");
             if (isLoggedIn === "true") {
                 window.location.href = "home.html"; // Redirect to home.html if already logged in
+            } else {
+                // Redirect to login page if not logged in
+                window.location.href = "index.html"; 
             }
         };
 

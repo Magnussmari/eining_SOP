@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orlofs- og Desemberuppbót Reiknivél 2024</title>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #eef2f5;
+        }
+        .calculator {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .calculator h1 {
+            text-align: center;
+            color: #2c5282;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c5282;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        .results {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+        }
+        .results p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .bonus-amount {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            .calculator {
+                padding: 15px;
+            }
+            .results p {
+                font-size: 1em;
+            }
+            .bonus-amount {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Orlofs- og Desemberuppbót Reiknivél 2024</h1>
+        
+        <div class="form-group">
+            <label for="bonusType">Gerð Uppbótar:</label>
+            <select id="bonusType">
+                <option value="orlof">Orlofsuppbót (1. maí 2024 - 30. apríl 2025)</option>
+                <option value="desember">Desemberuppbót (1. janúar 2024 - 31. desember 2024)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="baseAmount">Heildarupphæð (kr):</label>
+            <input type="number" id="baseAmount" value="58000" min="0" step="1000">
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Fyrsti vinnudagur á tímabilinu:</label>
+            <input type="text" id="startDate" placeholder="dd/mm/yyyy">
+            <div id="startDateError" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">Síðasti vinnudagur á tímabilinu:</label>
+            <input type="text" id="endDate" placeholder="dd/mm/yyyy">
+            <div id="endDateError" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="vacationWeeks">Orlofsvikur:</label>
+            <input type="number" id="vacationWeeks" value="0" min="0" step="0.1">
+            <div id="vacationWeeksError" class="error"></div>
+        </div>
+
+        <div class="results" id="results">
+            <p>Total Tímabil: <span id="totalPeriod">0</span> vikur</p>
+            <p>Vinnu Vikur: <span id="workedWeeks">0</span> vikur</p>
+            <p>Hlutfall: <span id="ratio">0</span>% (<span id="weekRatio">0/45</span>)</p>
+            <p class="bonus-amount">Uppbót: <span id="bonusAmount">0</span> kr</p>
+        </div>
+    </div>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Flatpickr Icelandic Locale -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/is.js"></script>
+    <script>
+        // Bonus Type Selection
+        const bonusType = document.getElementById('bonusType');
+        const baseAmount = document.getElementById('baseAmount');
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+        const vacationWeeks = document.getElementById('vacationWeeks');
+        const baseWeeks = 45;
+
+        // Result Elements
+        const totalPeriod = document.getElementById('totalPeriod');
+        const workedWeeks = document.getElementById('workedWeeks');
+        const ratio = document.getElementById('ratio');
+        const weekRatio = document.getElementById('weekRatio');
+        const bonusAmount = document.getElementById('bonusAmount');
+
+        // Error Elements
+        const startDateError = document.getElementById('startDateError');
+        const endDateError = document.getElementById('endDateError');
+        const vacationWeeksError = document.getElementById('vacationWeeksError');
+
+        // Initialize Flatpickr with dd/mm/yyyy format and Icelandic locale
+        let startDatePicker = flatpickr(startDateInput, {
+            dateFormat: "d/m/Y",
+            locale: "is",
+            onChange: updateCalculations
+        });
+
+        let endDatePicker = flatpickr(endDateInput, {
+            dateFormat: "d/m/Y",
+            locale: "is",
+            onChange: updateCalculations
+        });
+
+        // Function to set base amount based on bonus type
+        function setBaseAmount() {
+            if (bonusType.value === 'orlof') {
+                // Default to 58000 if not set
+                if (baseAmount.value === '' || baseAmount.value < 0) {
+                    baseAmount.value = 58000;
+                }
+            } else if (bonusType.value === 'desember') {
+                // Default to 106000 if not set
+                if (baseAmount.value === '' || baseAmount.value < 0) {
+                    baseAmount.value = 106000;
+                }
+            }
+        }
+
+        // Function to set default dates based on bonus type
+        function setDefaultDates() {
+            let start, end;
+
+            if (bonusType.value === 'orlof') {
+                // Orlofsuppbót: May 1, 2024 - April 30, 2025
+                start = new Date(2024, 4, 1); // May 1, 2024
+                end = new Date(2025, 3, 30); // April 30, 2025
+            } else {
+                // Desemberuppbót: January 1, 2024 - December 31, 2024
+                start = new Date(2024, 0, 1); // Jan 1, 2024
+                end = new Date(2024, 11, 31); // Dec 31, 2024
+            }
+
+            // Set Flatpickr date pickers
+            startDatePicker.setDate(start, false, "d/m/Y");
+            endDatePicker.setDate(end, false, "d/m/Y");
+
+            // Update min and max dates
+            startDatePicker.set('minDate', start);
+            startDatePicker.set('maxDate', end);
+            endDatePicker.set('minDate', start);
+            endDatePicker.set('maxDate', end);
+        }
+
+        // Initialize base amount and default dates on page load
+        setBaseAmount();
+        setDefaultDates();
+
+        // Update base amount and dates when bonus type changes
+        bonusType.addEventListener('change', () => {
+            setBaseAmount();
+            setDefaultDates();
+            updateCalculations();
+        });
+
+        // Function to parse date from dd/mm/yyyy to Date object
+        function parseDate(dateStr) {
+            if (!dateStr) return null;
+            const [day, month, year] = dateStr.split('/').map(num => parseInt(num, 10));
+            return new Date(year, month - 1, day);
+        }
+
+        // Function to calculate weeks between dates
+        function calculateWeeks(start, end) {
+            if (!start || !end) return 0;
+            const diffTime = end - start;
+            if (diffTime < 0) return 0;
+            const diffWeeks = diffTime / (1000 * 60 * 60 * 24 * 7);
+            return Number(diffWeeks.toFixed(1));
+        }
+
+        // Function to format numbers with thousand separators
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Function to display errors
+        function displayError(element, message) {
+            element.textContent = message;
+        }
+
+        // Function to clear errors
+        function clearErrors() {
+            displayError(startDateError, '');
+            displayError(endDateError, '');
+            displayError(vacationWeeksError, '');
+        }
+
+        // Function to update calculations
+        function updateCalculations() {
+            clearErrors();
+            const startStr = startDateInput.value;
+            const endStr = endDateInput.value;
+            const vacWeeks = Number(vacationWeeks.value);
+            const amount = Number(baseAmount.value);
+
+            // Parse dates
+            const start = parseDate(startStr);
+            const end = parseDate(endStr);
+
+            // Validate dates
+            if (start > end) {
+                displayError(endDateError, 'Síðasti vinnudagur verður að vera á eftir fyrsta vinnudag.');
+                totalPeriod.textContent = '0';
+                workedWeeks.textContent = '0';
+                ratio.textContent = '0';
+                weekRatio.textContent = `0/${baseWeeks}`;
+                bonusAmount.textContent = '0';
+                return;
+            }
+
+            // Calculate total weeks
+            const weeks = calculateWeeks(start, end);
+            totalPeriod.textContent = weeks;
+
+            // Validate vacation weeks
+            if (vacWeeks > weeks) {
+                displayError(vacationWeeksError, 'Orlofsvikur má ekki vera meiri en heildar vikur tímabilsins.');
+                workedWeeks.textContent = '0';
+                ratio.textContent = '0';
+                weekRatio.textContent = `0/${baseWeeks}`;
+                bonusAmount.textContent = '0';
+                return;
+            }
+
+            // Calculate worked weeks
+            const actualWorkedWeeks = Math.max(0, weeks - vacWeeks);
+            workedWeeks.textContent = actualWorkedWeeks;
+
+            // Calculate ratio (capped at 100%)
+            const calculatedRatio = Math.min((actualWorkedWeeks / baseWeeks), 1);
+            const ratioPercentage = (calculatedRatio * 100).toFixed(1);
+            ratio.textContent = ratioPercentage;
+            weekRatio.textContent = `${actualWorkedWeeks}/${baseWeeks}`;
+
+            // Calculate bonus (capped at base amount)
+            const bonus = Math.min(Math.round(amount * calculatedRatio), amount);
+            bonusAmount.textContent = formatNumber(bonus);
+        }
+
+        // Add event listeners to all inputs
+        baseAmount.addEventListener('input', updateCalculations);
+        vacationWeeks.addEventListener('input', updateCalculations);
+
+        // Initial calculation
+        updateCalculations();
+    </script>
+</body>
+</html>
