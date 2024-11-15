@@ -5,92 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gæðahandbók</title>
     <link rel="stylesheet" href="../styles/style.css">
-</head>
-<body>
-    <h1>Veikindaréttur</h1>
-    <button onclick="window.open('https://einingidja.sharepoint.com/:w:/s/Kjarasvi/ESm26yR-1MlGlCDpXyD5G_QBpiPH3kFQbHSCX4XyjPvesA?e=qoahcf', '_blank')" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">Vinnuskjal á SharePoint</button>
     <style>
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .calculator-section {
+            margin-top: 3rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculator-section h3 {
+            margin-top: 0;
+        }
+        
+        .calculator-container {
+            width: 100%;
+            min-height: 700px;
+            margin: 0 auto;
+        }
+        
         button:hover {
             background-color: #0056b3 !important;
         }
+        
+        .warning-message {
+            color: red;
+            font-weight: bold;
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: rgba(255, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        .sharepoint-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 1rem 0;
+        }
     </style>
-    <p style="color: red; font-weight: bold;">⚠️ Vinsamlegast athugið: Þetta eru drög í vinnslu og ekki endanleg skjöl.</p>
+</head>
+<body>
+    <div class="content-section">
+        <h1>Veikindaréttur</h1>
+        <button class="sharepoint-button" onclick="window.open('https://einingidja.sharepoint.com/:w:/s/Kjarasvi/ESm26yR-1MlGlCDpXyD5G_QBpiPH3kFQbHSCX4XyjPvesA?e=qoahcf', '_blank')">Vinnuskjal á SharePoint</button>
+        
+        <p class="warning-message">⚠️ Vinsamlegast athugið: Þetta eru drög í vinnslu og ekki endanleg skjöl.</p>
 
-    <h2>Greining á veikindarétti milli almennra og opinberra kjarasamninga</h2>
-    
-    <p>Veikindaréttur starfsfólks er ólíkur eftir því hvort það starfar á almennum vinnumarkaði eða hjá hinu opinbera. Hér er farið yfir veikindarétt samkvæmt almennum kjarasamningi SA og SGS og síðan gerður samanburður við veikindarétt opinberra starfsmanna.</p>
-    
-    <h3>Veikindaréttur samkvæmt almennum kjarasamningi (SA og SGS)<sup><a href="#" onclick="loadReferenceInParent('ref1'); return false;">[1]</a></sup></h3>
-    
-    <ul>
-        <li>Á fyrsta starfsári greiðast 2 dagar fyrir hvern unninn mánuð.</li>
-        <li>Eftir 1 ár: 1 mánuður með staðgengislaunum.</li>
-        <li>Eftir 2 ár: 1 mánuður með staðgengislaunum + 1 mánuður á dagvinnulaunum.</li>
-        <li>Eftir 3 ár: 1 mánuður með staðgengislaunum + 2 mánuðir á dagvinnulaunum.</li>
-        <li>Eftir 5 ár: 1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum.</li>
-    </ul>
-    
-    <h3>Veikindaréttur hjá sveitarfélögum<sup><a href="#" onclick="loadReferenceInParent('ref2'); return false;">[2]</a></sup></h3>
-    
-    <ul>
-        <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
-        <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
-        <li>Eftir 10 ár: 9 mánuðir með fullum launum.</li>
-        <li>Eftir 15 ár: 12 mánuðir með fullum launum.</li>
-    </ul>
-    
-    <h3>Veikindaréttur hjá ríkisstarfsmönnum<sup><a href="#" onclick="loadReferenceInParent('ref3'); return false;">[3]</a></sup></h3>
-    
-    <ul>
-        <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
-        <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
-        <li>Eftir 10 ár: 12 mánuðir með fullum launum.</li>
-    </ul>
-    
-    <h3>Samanburðartafla</h3>
-    <div class="table-container">
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>Þáttur</th>
-                    <th>Almennur markaður (SA og SGS)</th>
-                    <th>Sveitarfélög</th>
-                    <th>Ríkisstarfsmenn</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Veikindaréttur fyrsta árið</td>
-                    <td>2 dagar fyrir hvern unninn mánuð</td>
-                    <td>3 mánuðir</td>
-                    <td>3 mánuðir</td>
-                </tr>
-                <tr>
-                    <td>Veikindaréttur eftir 5 ár</td>
-                    <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
-                    <td>6 mánuðir</td>
-                    <td>6 mánuðir</td>
-                </tr>
-                <tr>
-                    <td>Veikindaréttur eftir 10 ár</td>
-                    <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
-                    <td>9 mánuðir</td>
-                    <td>12 mánuðir</td>
-                </tr>
-                <tr>
-                    <td>Veikindaréttur eftir 15 ár</td>
-                    <td>-</td>
-                    <td>12 mánuðir</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>Greining á veikindarétti milli almennra og opinberra kjarasamninga</h2>
+        
+        <p>Veikindaréttur starfsfólks er ólíkur eftir því hvort það starfar á almennum vinnumarkaði eða hjá hinu opinbera. Hér er farið yfir veikindarétt samkvæmt almennum kjarasamningi SA og SGS og síðan gerður samanburður við veikindarétt opinberra starfsmanna.</p>
     </div>
 
-    <h3>Reiknivél fyrir veikindarétt</h3>
-    <iframe src="../apps/illness/illnesscalc.html" width="100%" height="550" frameborder="0"></iframe>
+    <div class="content-section">
+        <h3>Veikindaréttur samkvæmt almennum kjarasamningi (SA og SGS)<sup><a href="#" onclick="loadReferenceInParent('ref1'); return false;">[1]</a></sup></h3>
+        
+        <ul>
+            <li>Á fyrsta starfsári greiðast 2 dagar fyrir hvern unninn mánuð.</li>
+            <li>Eftir 1 ár: 1 mánuður með staðgengislaunum.</li>
+            <li>Eftir 2 ár: 1 mánuður með staðgengislaunum + 1 mánuður á dagvinnulaunum.</li>
+            <li>Eftir 3 ár: 1 mánuður með staðgengislaunum + 2 mánuðir á dagvinnulaunum.</li>
+            <li>Eftir 5 ár: 1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum.</li>
+        </ul>
+    </div>
 
+    <div class="content-section">
+        <h3>Veikindaréttur hjá sveitarfélögum<sup><a href="#" onclick="loadReferenceInParent('ref2'); return false;">[2]</a></sup></h3>
+        
+        <ul>
+            <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
+            <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
+            <li>Eftir 10 ár: 9 mánuðir með fullum launum.</li>
+            <li>Eftir 15 ár: 12 mánuðir með fullum launum.</li>
+        </ul>
+    </div>
 
+    <div class="content-section">
+        <h3>Veikindaréttur hjá ríkisstarfsmönnum<sup><a href="#" onclick="loadReferenceInParent('ref3'); return false;">[3]</a></sup></h3>
+        
+        <ul>
+            <li>Eftir 1 ár: 3 mánuðir með fullum launum.</li>
+            <li>Eftir 5 ár: 6 mánuðir með fullum launum.</li>
+            <li>Eftir 10 ár: 12 mánuðir með fullum launum.</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h3>Samanburðartafla</h3>
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Þáttur</th>
+                        <th>Almennur markaður (SA og SGS)</th>
+                        <th>Sveitarfélög</th>
+                        <th>Ríkisstarfsmenn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Veikindaréttur fyrsta árið</td>
+                        <td>2 dagar fyrir hvern unninn mánuð</td>
+                        <td>3 mánuðir</td>
+                        <td>3 mánuðir</td>
+                    </tr>
+                    <tr>
+                        <td>Veikindaréttur eftir 5 ár</td>
+                        <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
+                        <td>6 mánuðir</td>
+                        <td>6 mánuðir</td>
+                    </tr>
+                    <tr>
+                        <td>Veikindaréttur eftir 10 ár</td>
+                        <td>1 mánuður með staðgengislaunum + 3 mánuðir á dagvinnulaunum</td>
+                        <td>9 mánuðir</td>
+                        <td>12 mánuðir</td>
+                    </tr>
+                    <tr>
+                        <td>Veikindaréttur eftir 15 ár</td>
+                        <td>-</td>
+                        <td>12 mánuðir</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="calculator-section">
+        <h3>Reiknivél fyrir veikindarétt</h3>
+        <div class="calculator-container">
+            <iframe src="../apps/illness/illnesscalc.html" width="100%" height="700" frameborder="0"></iframe>
+        </div>
+    </div>
 
     <script>
         function loadReferenceInParent(refId) {
